@@ -1,0 +1,11 @@
+syntax = "proto3";
+package song;
+
+service Crawler { rpc Crawl(CrawlRequest) returns (CrawlResponse); }
+
+message CrawlRequest {
+  string source = 1;
+  repeated string urls = 2;
+}
+
+message CrawlResponse { bool success = 1; }

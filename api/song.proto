@@ -1,0 +1,33 @@
+syntax = "proto3";
+package song;
+
+service SongsService {
+  rpc GetSongs(SongRequestParams) returns (GetSongsResponse);
+}
+
+message SongRequestParams { string genre = 1; }
+
+message GetSongsResponse { repeated Song data = 1; }
+
+message Song {
+  string id = 1;
+  string title = 2;
+  string artists_names = 3;
+  string thumbnail = 4;
+  string thumbnail_medium = 5;
+  string lyric = 6;
+  int32 duration = 7;
+  repeated Genre genres = 8;
+}
+
+message Streaming {
+  string q128 = 1;
+  string q320 = 2;
+}
+
+message Genre {
+  string id = 1;
+  string name = 2;
+  string alias = 3;
+  string link = 4;
+}
