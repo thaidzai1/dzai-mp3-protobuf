@@ -2,6 +2,7 @@ syntax = "proto3";
 package crawler;
 
 import "api/song/song.proto";
+option go_package = "github.com/thaidzai285/dzai-mp3-protobuf/pkg/pb";
 
 service Crawler { rpc Crawl(CrawlRequest) returns (CrawlResponse); }
 

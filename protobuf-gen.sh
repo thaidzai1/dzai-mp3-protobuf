@@ -38,7 +38,7 @@ for PKG in $(find $DIR/api$FILTER -type d | grep -v common | grep -v google); do
     PROTO=$PKG/*.proto
     if ls $PROTO 1>/dev/null 2>/dev/null; then
         echo "Generated from: $PKG"
-        protoc $IMPORT --go_out=plugins=grpc:./pkg/pb $PROTO
+        protoc $IMPORT --go_out=plugins=grpc:$GOPATH/src/. $PROTO
     fi
 done
 
