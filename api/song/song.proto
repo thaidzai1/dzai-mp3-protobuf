@@ -9,7 +9,11 @@ service SongsService {
 
 message SongRequestParams { string genre = 1; }
 
-message GetSongsResponse { repeated Song data = 1; }
+message GetSongsResponse {
+  bool success = 1;
+  string message = 2;
+  repeated Song data = 3;
+}
 
 message Song {
   string id = 1;

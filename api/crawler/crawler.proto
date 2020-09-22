@@ -13,5 +13,6 @@ message CrawlRequest {
 
 message CrawlResponse {
   bool success = 1;
-  repeated song.Song data = 2;
+  string message = 2;
+  repeated song.Song data = 3;
 }
