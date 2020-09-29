@@ -1,8 +1,7 @@
 #!/bin/bash
 DIR=$GOPATH/src/github.com/thaidzai285/dzai-mp3-protobuf
-IMPORT="-I$DIR/api \
-    -I$DIR \
-    -I/src/github.com/grpc-ecosystem/grpc-gateway"
+IMPORT="-I$DIR \
+    -I$GOPATH/src/github.com/grpc-ecosystem/grpc-gateway/third_party/googleapis"
 
 if [ ! -z "$1" ] ; then
     FILTER="/$1"
@@ -23,7 +22,6 @@ function clean() {
 for PKG in $(find $DIR/pkg/pb$FILTER -type d); do
     clean $PKG/*.pb.go
     clean $PKG/*.pb.gw.go
-    clean $PKG/*.pb.gen.go
     clean $PKG/*.swagger.json
 done
 
@@ -39,6 +37,7 @@ for PKG in $(find $DIR/api$FILTER -type d | grep -v common | grep -v google); do
     if ls $PROTO 1>/dev/null 2>/dev/null; then
         echo "Generated from: $PKG"
         protoc $IMPORT --go_out=plugins=grpc:$GOPATH/src/. $PROTO
+        protoc $IMPORT --grpc-gateway_out=logtostderr=true:$GOPATH/src/. $PROTO
     fi
 done
 

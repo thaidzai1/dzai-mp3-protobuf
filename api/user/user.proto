@@ -1,0 +1,38 @@
+syntax = "proto3";
+package user;
+
+option go_package = "github.com/thaidzai285/dzai-mp3-protobuf/pkg/pb";
+
+import "google/api/annotations.proto";
+
+service User {
+  rpc Login(LoginRequest) returns (AuthenResponse) {
+    option (google.api.http) = {
+      post : "/v1/login",
+      body : "*"
+    };
+  };
+
+  rpc Register(RegisterRequest) returns (AuthenResponse) {
+    option (google.api.http) = {
+      post : "/v1/register"
+      body : "*"
+    };
+  };
+}
+
+message LoginRequest {
+  string eamil = 1;
+  string password = 2;
+}
+
+message AuthenResponse {
+  string bool = 1;
+  string message = 2;
+  string token = 3;
+}
+
+message RegisterRequest {
+  string email = 1;
+  string password = 2;
+}
