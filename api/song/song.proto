@@ -1,7 +1,7 @@
 syntax = "proto3";
 package song;
 
-option go_package = "github.com/thaidzai285/dzai-mp3-protobuf/pkg/pb";
+option go_package = "github.com/thaidzai285/dzai-mp3-protobuf/internal/pkg/pb";
 
 service SongsService {
   rpc GetSongs(SongRequestParams) returns (GetSongsResponse);
